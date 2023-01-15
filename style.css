@@ -85,6 +85,9 @@ a:visited {
 }
 
 .workout__title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   font-size: 1.7rem;
   font-weight: 600;
   grid-column: 1 / -1;
@@ -111,6 +114,13 @@ a:visited {
   color: var(--color-light--1);
   text-transform: uppercase;
   font-weight: 800;
+}
+
+.workout__edit__button {
+  height: 20px;
+  width: 22px;
+  background-color: transparent;
+  border: none;
 }
 
 .form {
