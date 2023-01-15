@@ -116,6 +116,13 @@ a:visited {
   font-weight: 800;
 }
 
+.workout__button__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+}
+
 .workout__edit__button,
 .workout__trash__button {
   height: 20px;

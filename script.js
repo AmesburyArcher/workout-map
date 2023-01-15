@@ -188,6 +188,22 @@ class App {
     );
   }
 
+  _hideTrashButtons() {
+    const allForms = document.querySelectorAll('.workout');
+    allForms.forEach(
+      form =>
+        (form.querySelector('.workout__trash__button').style.display = 'none')
+    );
+  }
+
+  _displayTrashButtons() {
+    const allForms = document.querySelectorAll('.workout');
+    allForms.forEach(
+      form =>
+        (form.querySelector('.workout__trash__button').style.display = 'block')
+    );
+  }
+
   _editForm(e) {
     /////////////////////////////////////DO ME NEXT
     if (e.target.closest('.workout__edit')) {
@@ -203,8 +219,9 @@ class App {
         work => work.id === formDOM.dataset.id
       ); // display form on button click
 
-      // hide all other edit buttons
+      // hide all other edit buttons and trash buttons
       this._hideEditButtons(workout);
+      this._hideTrashButtons();
 
       // retreive values from stored workout
       if (workout.type === 'cycling') {
@@ -290,8 +307,9 @@ class App {
         </button>
       `;
 
-      // display edit buttons again
+      // display edit and trash buttons again
       this._displayEditButtons();
+      this._displayTrashButtons();
     }
   }
 
