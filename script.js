@@ -121,9 +121,11 @@ class App {
     const container = document.querySelector(
       '.workout__forms__buttons__container'
     );
+    //display outer icons if it doesnt already exist and array is populated
     if (this.#mapMarkers.length > 0) {
       if (!container) this._displaySortAndDelete();
     }
+    //remove icons if array is empty
     if (this.#mapMarkers.length === 0) {
       if (container) container.remove();
     }
@@ -181,6 +183,7 @@ class App {
         '';
     form.style.display = 'none';
     form.classList.add('hidden');
+    //needed for animation to perform correctly
     setTimeout(() => (form.style.display = 'grid'), 1000);
   }
 
@@ -224,6 +227,10 @@ class App {
   _editForm(e) {
     /////////////////////////////////////DO ME NEXT
     if (e.target.closest('.workout__edit')) {
+      //make sure map is rendered first
+      if (this.#mapMarkers.length === 0) return;
+
+      //selectors
       const buttonHTML = e.target.closest('.workout__edit');
       const formDOM = e.target.closest('.workout');
       //disable dropwdown to change type
@@ -582,7 +589,9 @@ class App {
   }
 
   _moveToPopup(e) {
+    //clauses to disable moving
     if (e.target.closest('.workout__trash__button')) return;
+    if (this.#mapMarkers.length === 0) return;
 
     const workoutEl = e.target.closest('.workout');
 
@@ -592,6 +601,7 @@ class App {
       work => work.id === workoutEl.dataset.id
     );
 
+    //focus the map on the selected workout clicked from sidebar
     this.#map.setView(workout.coords, this.#mapZoomLevel, {
       animate: true,
       pan: {
@@ -634,7 +644,9 @@ class App {
 
   _deleteAllWorkouts(e) {
     if (e.target.closest('.workouts__all__trash__button')) {
+      //set this to App
       const that = this;
+      // loop through all workouts to remove markers from map
       that.#workouts.forEach((work, i) => {
         const [lat, lng] = work.coords;
 
@@ -645,16 +657,20 @@ class App {
 
         that.#map.removeLayer(marker);
       });
+      //delete all traces of workouts in app
       that.#mapMarkers.splice(0, that.#mapMarkers.length);
       that.#workouts.splice(0, that.#workouts.length);
       const formsDOM = document.querySelectorAll('.workout');
       formsDOM.forEach(form => form.remove());
+      //update storage
       that._setLocalStorage();
+      //toggle outer icons visibility
       that._mapMarkersArrayWatcher();
     }
   }
 
   _displaySortAndDelete() {
+    //create outer icons buttons
     const sortDOM = `
     <button class="sort__workouts__button" type="button">
       <svg xmlns="http://www.w3.org/2000/svg" class="icon icon__sort" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -678,6 +694,7 @@ class App {
       </button>
     `;
 
+    //append button to container
     const container = document.createElement('div');
     container.classList.add('workout__forms__buttons__container');
     container.insertAdjacentHTML('afterbegin', sortDOM);
@@ -688,6 +705,7 @@ class App {
   }
 
   _createWorkoutFromLocalStorage(arr) {
+    //recreate objects stored in local storage upon reload
     arr.forEach(function (workout) {
       const type = workout.type;
       const duration = workout.duration;
@@ -721,7 +739,7 @@ class App {
           workout.description
         );
       }
-
+      //populate workouts array with recreated workout objects
       this.#workouts.push(newWorkout);
     }, this);
   }
@@ -740,6 +758,7 @@ class App {
     });
   }
 
+  // method available to reset local storage
   reset() {
     localStorage.removeItem('workouts');
     location.reload();
