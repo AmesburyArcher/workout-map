@@ -93,6 +93,7 @@ class App {
   #mapEvent;
   #workouts = [];
   #mapMarkers = [];
+  #sorted = false;
   constructor() {
     // get user pos
     this._getPosition();
@@ -115,6 +116,36 @@ class App {
     );
 
     sidebar.addEventListener('click', this._deleteAllWorkouts.bind(this));
+    sidebar.addEventListener(
+      'click',
+      this._sortWorkoutsButtonHandler.bind(this)
+    );
+  }
+
+  _sortWorkoutsButtonHandler(e) {
+    if (!e.target.closest('.sort__workouts__button')) return;
+    //swap sort value
+    this.#sorted = !this.#sorted;
+    this._sortWorkoutsDistance();
+  }
+
+  _sortWorkoutsDistance() {
+    //check whether to sort by increasing, or original order based on App.#sorted value
+    const workoutsArr =
+      this.#sorted === true
+        ? this.#workouts.slice().sort(function (a, b) {
+            return a.distance - b.distance;
+          })
+        : this.#workouts;
+    this._renderAllWorkouts(workoutsArr);
+  }
+
+  _renderAllWorkouts(workoutArr) {
+    // delete and then re-render all workouts based on sorted property
+    const workouts = document.querySelectorAll('.workout');
+    workouts.forEach(work => work.remove());
+    const that = this;
+    workoutArr.forEach(workout => that._renderWorkout(workout));
   }
 
   _mapMarkersArrayWatcher() {
