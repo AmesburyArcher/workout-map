@@ -1,6 +1,7 @@
 'use strict';
 
 const form = document.querySelector('.form');
+const sidebar = document.querySelector('.sidebar');
 const containerWorkouts = document.querySelector('.workouts');
 const inputType = document.querySelector('.form__input--type');
 const inputDistance = document.querySelector('.form__input--distance');
@@ -112,20 +113,19 @@ class App {
       'click',
       this._deleteSelectedWorkout.bind(this)
     );
+
+    sidebar.addEventListener('click', this._deleteAllWorkouts.bind(this));
   }
 
   _mapMarkersArrayWatcher() {
-    console.log('working');
     const container = document.querySelector(
       '.workout__forms__buttons__container'
     );
     if (this.#mapMarkers.length > 0) {
       if (!container) this._displaySortAndDelete();
-      console.log('reached');
     }
     if (this.#mapMarkers.length === 0) {
       if (container) container.remove();
-      console.log('uhoh');
     }
   }
 
@@ -602,6 +602,9 @@ class App {
 
   _deleteSelectedWorkout(e) {
     if (e.target.closest('.workout__trash__button')) {
+      // need to make sure markers are loaded in before being able to delete
+      if (this.#mapMarkers.length === 0) return;
+
       const formDOM = e.target.closest('.workout');
 
       //find workout in array
@@ -629,9 +632,25 @@ class App {
     }
   }
 
-  _deleteAllWorkouts() {
-    if (e.target.closest('.workout__all__trash__button')) {
-      //TODO: DO THIS  NEXT
+  _deleteAllWorkouts(e) {
+    if (e.target.closest('.workouts__all__trash__button')) {
+      const that = this;
+      that.#workouts.forEach((work, i) => {
+        const [lat, lng] = work.coords;
+
+        const markerIndex = that.#mapMarkers.findIndex(
+          mark => lat === mark._latlng.lat && lng === mark._latlng.lng
+        );
+        const marker = that.#mapMarkers[markerIndex];
+
+        that.#map.removeLayer(marker);
+      });
+      that.#mapMarkers.splice(0, that.#mapMarkers.length);
+      that.#workouts.splice(0, that.#workouts.length);
+      const formsDOM = document.querySelectorAll('.workout');
+      formsDOM.forEach(form => form.remove());
+      that._setLocalStorage();
+      that._mapMarkersArrayWatcher();
     }
   }
 
