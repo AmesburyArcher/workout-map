@@ -114,6 +114,21 @@ class App {
     );
   }
 
+  _mapMarkersArrayWatcher() {
+    console.log('working');
+    const container = document.querySelector(
+      '.workout__forms__buttons__container'
+    );
+    if (this.#mapMarkers.length > 0) {
+      if (!container) this._displaySortAndDelete();
+      console.log('reached');
+    }
+    if (this.#mapMarkers.length === 0) {
+      if (container) container.remove();
+      console.log('uhoh');
+    }
+  }
+
   _getPosition() {
     //get user position
     if (navigator.geolocation) {
@@ -144,6 +159,8 @@ class App {
     this.#workouts.forEach(work => {
       this._renderWorkoutMarker(work);
     });
+    //check if icon container needed
+    this._mapMarkersArrayWatcher();
   }
 
   _showForm(mapE) {
@@ -310,6 +327,9 @@ class App {
       // display edit and trash buttons again
       this._displayEditButtons();
       this._displayTrashButtons();
+
+      //check for outside icon container
+      this._mapMarkersArrayWatcher();
     }
   }
 
@@ -369,6 +389,8 @@ class App {
     this._setLocalStorage();
     //display edit buttons
     this._displayEditButtons();
+    // check if need to update icon container
+    this._mapMarkersArrayWatcher();
   }
 
   _renderEditForm(workout, form) {
@@ -602,7 +624,48 @@ class App {
       this.#mapMarkers.splice(markerIndex, 1);
       //update local storage
       this._setLocalStorage();
+      // check if need to update outside icon container
+      this._mapMarkersArrayWatcher();
     }
+  }
+
+  _deleteAllWorkouts() {
+    if (e.target.closest('.workout__all__trash__button')) {
+      //TODO: DO THIS  NEXT
+    }
+  }
+
+  _displaySortAndDelete() {
+    const sortDOM = `
+    <button class="sort__workouts__button" type="button">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon__sort" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <path d="M3 9l4 -4l4 4m-4 -4v14" />
+        <path d="M21 15l-4 4l-4 -4m4 4v-14" />
+      </svg>
+    </button>
+    `;
+
+    const deleteDOM = `
+      <button class="workouts__all__trash__button" type="button">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon__trash" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+          <line x1="4" y1="7" x2="20" y2="7" />
+          <line x1="10" y1="11" x2="10" y2="17" />
+          <line x1="14" y1="11" x2="14" y2="17" />
+          <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+          <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+        </svg>
+      </button>
+    `;
+
+    const container = document.createElement('div');
+    container.classList.add('workout__forms__buttons__container');
+    container.insertAdjacentHTML('afterbegin', sortDOM);
+    container.insertAdjacentHTML('afterbegin', deleteDOM);
+
+    const logoDOM = document.querySelector('.logo');
+    logoDOM.after(container);
   }
 
   _createWorkoutFromLocalStorage(arr) {

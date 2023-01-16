@@ -124,11 +124,30 @@ a:visited {
 }
 
 .workout__edit__button,
-.workout__trash__button {
+.workout__trash__button,
+.sort__workouts__button,
+.workouts__all__trash__button {
   height: 20px;
   width: 22px;
   background-color: transparent;
   border: none;
+}
+
+.workout__edit__button:hover,
+.workout__trash__button:hover,
+.sort__workouts__button:hover,
+.workouts__all__trash__button:hover {
+  cursor: pointer;
+  transform: scale(1.1) perspective(1px);
+}
+
+.workout__forms__buttons__container {
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .form {
