@@ -1,0 +1,25 @@
+{
+  "name": "workout-map",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AmesburyArcher/workout-map.git"
+  },
+  "author": "Max",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AmesburyArcher/workout-map/issues"
+  },
+  "homepage": "https://github.com/AmesburyArcher/workout-map#readme",
+  "dependencies": {
+    "leaflet": "^1.9.3"
+  },
+  "devDependencies": {
+    "parcel": "^2.8.3"
+  }
+}
