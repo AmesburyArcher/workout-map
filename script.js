@@ -1,5 +1,6 @@
 'use strict';
 
+const mapDOM = document.querySelector('#map');
 const form = document.querySelector('.form');
 const sidebar = document.querySelector('.sidebar');
 const containerWorkouts = document.querySelector('.workouts');
@@ -197,6 +198,7 @@ class App {
   }
 
   _showForm(mapE) {
+    if (mapDOM.classList.contains('ignore')) return;
     if (mapE) {
       this.#mapEvent = mapE;
       this._hideEditButtons(null);
@@ -268,14 +270,17 @@ class App {
         outerIconContainer.remove();
       }
 
+      //Add class to map to remove map event clicks while editing
+      mapDOM.classList.add('ignore');
+      // add class to form to disable submit listener
+      form.classList.add('ignore');
+
       //selectors
       const buttonHTML = e.target.closest('.workout__edit');
       const formDOM = e.target.closest('.workout');
       //disable dropwdown to change type
       const dropDown = document.querySelector('.form__input');
       dropDown.disabled = true;
-      // add class to form to disable submit listener
-      form.classList.add('ignore');
 
       const workout = this.#workouts.find(
         work => work.id === formDOM.dataset.id
@@ -348,8 +353,9 @@ class App {
       // show updated list
       this._renderEditForm(workout, formDOM);
 
-      //remove ignore classlist from form
+      //remove ignore classlist from form and map
       form.classList.remove('ignore');
+      mapDOM.classList.remove('ignore');
 
       // hide and update form
       const dropDown = document.querySelector('.form__input');
