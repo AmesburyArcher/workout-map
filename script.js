@@ -260,6 +260,13 @@ class App {
     if (e.target.closest('.workout__edit')) {
       //make sure map is rendered first
       if (this.#mapMarkers.length === 0) return;
+      //Delete the outer icons from DOM
+      const outerIconContainer = document.querySelector(
+        '.workout__forms__buttons__container'
+      );
+      if (outerIconContainer) {
+        outerIconContainer.remove();
+      }
 
       //selectors
       const buttonHTML = e.target.closest('.workout__edit');
@@ -291,7 +298,7 @@ class App {
       inputDistance.value = workout.distance;
       inputDuration.value = workout.duration;
       // display values from retreived workout
-      this._showForm();
+      form.classList.remove('hidden');
 
       // switch edit button to submit button
       buttonHTML.innerHTML = `
@@ -310,10 +317,12 @@ class App {
     if (e.target.closest('.workout__edit__submit')) {
       // selectors
       const buttonHTML = e.target.closest('.workout__edit__submit');
-      const form = e.target.closest('.workout');
+      const formDOM = e.target.closest('.workout');
 
       //find the workout in the stored array
-      const workout = this.#workouts.find(work => work.id === form.dataset.id);
+      const workout = this.#workouts.find(
+        work => work.id === formDOM.dataset.id
+      );
 
       //update values from new input
       const newWorkoutType = inputType.value;
@@ -337,15 +346,15 @@ class App {
       }
 
       // show updated list
-      this._renderEditForm(workout, form);
+      this._renderEditForm(workout, formDOM);
+
+      //remove ignore classlist from form
+      form.classList.remove('ignore');
 
       // hide and update form
       const dropDown = document.querySelector('.form__input');
       dropDown.disabled = false;
       this._hideForm();
-
-      //remove ignore classlist from form
-      form.classList.remove('ignore');
 
       //update local storage
       this._setLocalStorage();
