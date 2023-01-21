@@ -13312,7 +13312,8 @@ class App {
         if (type === "running") {
             const cadence = +inputCadence.value;
             // check if data is valid
-            if (!validInputs(distance, duration, cadence) || !allPositive(distance, duration, cadence)) return alert("Inputs have to be positive numbers!");
+            if (!validInputs(distance, duration, cadence) || !allPositive(distance, duration, cadence)) //TODO: ADD FORM VALIDTION HERE
+            return alert("Inputs have to be positive numbers!");
             workout = new (0, _workouts.Running)([
                 lat,
                 lng

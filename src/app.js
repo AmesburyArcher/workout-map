@@ -335,8 +335,10 @@ class App {
       if (
         !validInputs(distance, duration, cadence) ||
         !allPositive(distance, duration, cadence)
-      )
+      ) {
+        //TODO: ADD FORM VALIDTION HERE
         return alert('Inputs have to be positive numbers!');
+      }
 
       workout = new Running([lat, lng], distance, duration, cadence);
     }

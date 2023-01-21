@@ -185,6 +185,14 @@ a:link, a:visited {
   transition: all .2s;
 }
 
+.form__input.form__invalid {
+  border: 1px solid red;
+}
+
+.form__input.form__valid {
+  border: 1px solid green;
+}
+
 .form__input:focus {
   background-color: #fff;
   outline: none;
