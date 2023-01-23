@@ -1,12 +1,13 @@
 :root {
-  --color-brand--1: #ffb545;
-  --color-brand--2: #00c46a;
-
-  --color-dark--1: #2d3439;
-  --color-dark--2: #42484d;
+  --color-dark--1: #272727; /* #2d3439 */
+  --color-dark--2: #747474; /* #42484d */
+  --color-dark--3: #2a1b3d;
   --color-light--1: #aaa;
   --color-light--2: #ececec;
   --color-light--3: rgb(214, 222, 224);
+
+  --color-brand--1: #ffe400;
+  --color-brand--2: #5680e9;
 }
 
 * {
@@ -28,7 +29,7 @@ body {
   height: 100vh;
   overscroll-behavior-y: none;
 
-  background-color: #fff;
+  background-color: var(--color-dark--1);
   padding: 2.5rem;
 
   display: flex;
@@ -43,16 +44,34 @@ a:visited {
 /* SIDEBAR */
 .sidebar {
   flex-basis: 50rem;
-  background-color: var(--color-dark--1);
+  background-image: linear-gradient(
+    to bottom right,
+    var(--color-dark--1),
+    var(--color-dark--2)
+  );
+  box-shadow: 0 30px 40px rgba(0, 0, 0, 0.2);
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
   padding: 3rem 5rem 4rem 5rem;
   display: flex;
   flex-direction: column;
 }
 
+.logo__container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding-right: 1rem;
+  margin-bottom: 3rem;
+}
+
+.logo__name {
+  font-size: 38px;
+}
+
 .logo {
   height: 5.2rem;
   align-self: center;
-  margin-bottom: 4rem;
 }
 
 .workouts {
@@ -67,7 +86,8 @@ a:visited {
 }
 
 .workout {
-  background-color: var(--color-dark--2);
+  background-color: var(--color-dark--1);
+  box-shadow: -30px 10px 40px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   padding: 1.5rem 2.25rem;
   margin-bottom: 1.75rem;
@@ -78,10 +98,12 @@ a:visited {
   gap: 0.75rem 1.5rem;
 }
 .workout--running {
-  border-left: 5px solid var(--color-brand--2);
+  border-left: 5px solid var(--color-brand--1);
+  color: var(--color-brand--1);
 }
 .workout--cycling {
-  border-left: 5px solid var(--color-brand--1);
+  border-left: 5px solid var(--color-brand--2);
+  color: var(--color-brand--2);
 }
 
 .workout__title {
@@ -102,11 +124,13 @@ a:visited {
   font-size: 1.8rem;
   margin-right: 0.2rem;
   height: 0.28rem;
+  color: var(--color-light--2);
 }
 
 .workout__value {
   font-size: 1.5rem;
   margin-right: 0.5rem;
+  color: var(--color-light--2);
 }
 
 .workout__unit {
@@ -242,12 +266,19 @@ a:visited {
 #map {
   flex: 1;
   height: 100%;
-  background-color: var(--color-light--1);
+  background-color: var(--color-dark--1);
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  box-shadow: 30px 30px 40px rgba(0, 0, 0, 0.2);
 }
 
 /* Popup width is defined in JS using options */
 .leaflet-popup .leaflet-popup-content-wrapper {
-  background-color: var(--color-dark--1);
+  background-image: linear-gradient(
+    to bottom right,
+    var(--color-dark--1),
+    var(--color-dark--2)
+  );
   color: var(--color-light--2);
   border-radius: 5px;
   padding-right: 0.6rem;
@@ -262,8 +293,8 @@ a:visited {
 }
 
 .running-popup .leaflet-popup-content-wrapper {
-  border-left: 5px solid var(--color-brand--2);
+  border-left: 5px solid var(--color-brand--1);
 }
 .cycling-popup .leaflet-popup-content-wrapper {
-  border-left: 5px solid var(--color-brand--1);
+  border-left: 5px solid var(--color-brand--2);
 }

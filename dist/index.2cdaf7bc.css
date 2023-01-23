@@ -1,11 +1,12 @@
 :root {
-  --color-brand--1: #ffb545;
-  --color-brand--2: #00c46a;
-  --color-dark--1: #2d3439;
-  --color-dark--2: #42484d;
+  --color-dark--1: #272727;
+  --color-dark--2: #747474;
+  --color-dark--3: #2a1b3d;
   --color-light--1: #aaa;
   --color-light--2: #ececec;
   --color-light--3: #d6dee0;
+  --color-brand--1: #ffe400;
+  --color-brand--2: #5680e9;
 }
 
 * {
@@ -23,7 +24,7 @@ body {
   color: var(--color-light--2);
   height: 100vh;
   overscroll-behavior-y: none;
-  background-color: #fff;
+  background-color: var(--color-dark--1);
   padding: 2.5rem;
   font-family: Manrope, sans-serif;
   font-weight: 400;
@@ -36,17 +37,31 @@ a:link, a:visited {
 }
 
 .sidebar {
-  background-color: var(--color-dark--1);
+  background-image: linear-gradient(to bottom right, var(--color-dark--1), var(--color-dark--2));
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
   flex-direction: column;
   flex-basis: 50rem;
   padding: 3rem 5rem 4rem;
   display: flex;
+  box-shadow: 0 30px 40px #0003;
+}
+
+.logo__container {
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  padding-right: 1rem;
+  display: flex;
+}
+
+.logo__name {
+  font-size: 38px;
 }
 
 .logo {
   height: 5.2rem;
   align-self: center;
-  margin-bottom: 4rem;
 }
 
 .workouts {
@@ -61,7 +76,7 @@ a:link, a:visited {
 }
 
 .workout {
-  background-color: var(--color-dark--2);
+  background-color: var(--color-dark--1);
   cursor: pointer;
   border-radius: 5px;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -69,14 +84,17 @@ a:link, a:visited {
   margin-bottom: 1.75rem;
   padding: 1.5rem 2.25rem;
   display: grid;
+  box-shadow: -30px 10px 40px #0000001a;
 }
 
 .workout--running {
-  border-left: 5px solid var(--color-brand--2);
+  border-left: 5px solid var(--color-brand--1);
+  color: var(--color-brand--1);
 }
 
 .workout--cycling {
-  border-left: 5px solid var(--color-brand--1);
+  border-left: 5px solid var(--color-brand--2);
+  color: var(--color-brand--2);
 }
 
 .workout__title {
@@ -95,11 +113,13 @@ a:link, a:visited {
 
 .workout__icon {
   height: .28rem;
+  color: var(--color-light--2);
   margin-right: .2rem;
   font-size: 1.8rem;
 }
 
 .workout__value {
+  color: var(--color-light--2);
   margin-right: .5rem;
   font-size: 1.5rem;
 }
@@ -220,12 +240,15 @@ a:link, a:visited {
 
 #map {
   height: 100%;
-  background-color: var(--color-light--1);
+  background-color: var(--color-dark--1);
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
   flex: 1;
+  box-shadow: 30px 30px 40px #0003;
 }
 
 .leaflet-popup .leaflet-popup-content-wrapper {
-  background-color: var(--color-dark--1);
+  background-image: linear-gradient(to bottom right, var(--color-dark--1), var(--color-dark--2));
   color: var(--color-light--2);
   border-radius: 5px;
   padding-right: .6rem;
@@ -240,11 +263,11 @@ a:link, a:visited {
 }
 
 .running-popup .leaflet-popup-content-wrapper {
-  border-left: 5px solid var(--color-brand--2);
+  border-left: 5px solid var(--color-brand--1);
 }
 
 .cycling-popup .leaflet-popup-content-wrapper {
-  border-left: 5px solid var(--color-brand--1);
+  border-left: 5px solid var(--color-brand--2);
 }
 
 /*# sourceMappingURL=index.2cdaf7bc.css.map */

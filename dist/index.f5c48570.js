@@ -13144,8 +13144,9 @@ class App {
             longitude
         ];
         this.#map = L.map("map").setView(coords, this.#mapZoomLevel);
-        L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        L.tileLayer("https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png", {
+            maxZoom: 20,
+            attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
         }).addTo(this.#map);
         //Handling clicks on map
         this.#map.on("click", this._showForm.bind(this));
@@ -13573,7 +13574,7 @@ class App {
         container.classList.add("workout__forms__buttons__container");
         container.insertAdjacentHTML("afterbegin", sortDOM);
         container.insertAdjacentHTML("afterbegin", deleteDOM);
-        const logoDOM = document.querySelector(".logo");
+        const logoDOM = document.querySelector(".logo__container");
         logoDOM.after(container);
     }
     _createWorkoutFromLocalStorage(arr) {
