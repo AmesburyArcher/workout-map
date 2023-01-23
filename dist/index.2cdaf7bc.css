@@ -36,6 +36,27 @@ a:link, a:visited {
   color: var(--color-brand--1);
 }
 
+.login__page {
+  z-index: 10;
+  width: 100%;
+  background-image: linear-gradient(to bottom right, var(--color-dark--1), var(--color-dark--2));
+  position: absolute;
+  inset: 0;
+}
+
+.login__page.hidden {
+  display: none;
+}
+
+.login__logo__container {
+  gap: 1rem;
+  display: flex;
+}
+
+.login__logo__name {
+  font-size: 64px;
+}
+
 .sidebar {
   background-image: linear-gradient(to bottom right, var(--color-dark--1), var(--color-dark--2));
   border-top-left-radius: 1rem;
@@ -241,6 +262,7 @@ a:link, a:visited {
 #map {
   height: 100%;
   background-color: var(--color-dark--1);
+  z-index: 1;
   border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem;
   flex: 1;
