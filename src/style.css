@@ -43,6 +43,7 @@ a:visited {
 
 /* LOGIN PAGE */
 .login__page {
+  display: flex;
   position: absolute;
   z-index: 10;
   top: 0px;
@@ -59,7 +60,51 @@ a:visited {
 
 .login__page.hidden {
   /* toggle visibility */
-  display: none;
+  /* display: none; */
+}
+
+.login__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  height: 15rem;
+  padding: 2rem 5rem 2rem 5rem;
+  border-bottom: solid 1px var(--color-light--2);
+}
+
+.login__button {
+  grid-row: 0 / 2;
+  align-self: end;
+  width: fit-content;
+  height: fit-content;
+  padding: 0.4rem 1.1rem;
+  border: solid 1px var(--color-light--2);
+  border-radius: 3px;
+  background-color: transparent;
+  color: var(--color-light--2);
+}
+
+.login__button:hover {
+  cursor: pointer;
+}
+
+.login__form {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0.5rem 2.5rem;
+  height: 9.25rem;
+  width: 360px;
+}
+
+.login__signup {
+  grid-column: 1 / 4;
+}
+
+.form__login__holder {
+  align-items: center;
 }
 
 .login__logo__container {
@@ -69,6 +114,49 @@ a:visited {
 
 .login__logo__name {
   font-size: 64px;
+}
+
+.login__logo {
+  width: auto;
+  height: 72px;
+}
+
+.fade-out {
+  animation: fadeOut ease 1s;
+  animation-fill-mode: forwards;
+  -webkit-animation: fadeOut ease 1s;
+  -webkit-animation-fill-mode: forwards;
+  -o-animation: fadeOut ease 1s;
+  -o-animation-fill-mode: forwards;
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@-webkit-keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@-o-keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
 }
 
 /* SIDEBAR */

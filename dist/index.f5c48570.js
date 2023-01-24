@@ -13078,6 +13078,8 @@ const inputDistance = document.querySelector(".form__input--distance");
 const inputDuration = document.querySelector(".form__input--duration");
 const inputCadence = document.querySelector(".form__input--cadence");
 const inputElevation = document.querySelector(".form__input--elevation");
+const loginButton = document.querySelector(".login__button");
+const loginScreen = document.querySelector(".login__page");
 class App {
     #map;
     #mapZoomLevel = 13;
@@ -13099,6 +13101,11 @@ class App {
         containerWorkouts.addEventListener("click", this._deleteSelectedWorkout.bind(this));
         sidebar.addEventListener("click", this._deleteAllWorkouts.bind(this));
         sidebar.addEventListener("click", this._sortWorkoutsButtonHandler.bind(this));
+        //TODO: TEMP LOGIN WILL NEED TO CHANGE LATER
+        loginButton.addEventListener("click", function() {
+            console.log("click");
+            loginScreen.classList.add("fade-out");
+        });
     }
     _sortWorkoutsButtonHandler(e) {
         if (!e.target.closest(".sort__workouts__button")) return;
