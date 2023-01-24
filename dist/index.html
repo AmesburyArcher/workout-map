@@ -44,6 +44,29 @@
           </div>
         </form>
       </div>
+      <form class="signup__form">
+        <svg class="signup__form__svg" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev/svgjs" viewbox="0 0 800 800">
+          <defs>
+            <radialgradient id="sssurface-grad-dark" r="75%" cx="20%" cy="20%">
+              <stop offset="0%" stop-color="#5680e9" stop-opacity="0"></stop>
+              <stop offset="100%" stop-color="#0054b6" stop-opacity="1"></stop>
+            </radialgradient>
+            <radialgradient id="sssurface-grad-light" r="25%" cx="65%" cy="30%">
+              <stop offset="0%" stop-color="#c4e1ff" stop-opacity="0.75"></stop>
+              <stop offset="100%" stop-color="#5680e9" stop-opacity="0"></stop>
+            </radialgradient>
+            <filter id="sssurface-blur" x="-100%" y="-100%" width="400%" height="400%" filterunits="objectBoundingBox" primitiveunits="userSpaceOnUse" color-interpolation-filters="sRGB">
+              <fegaussianblur stddeviation="30" x="0%" y="0%" width="100%" height="100%" in="SourceGraphic" edgemode="none" result="blur"></fegaussianblur>
+            </filter>
+          </defs>
+          <g>
+            <ellipse rx="150" ry="75" cx="291" cy="500" fill="#002d85" opacity="0.25" filter="url(#sssurface-blur)"></ellipse>
+            <circle r="150" cx="400" cy="400" fill="#5680e9"></circle>
+            <circle r="150" cx="400" cy="400" fill="url(#sssurface-grad-dark)"></circle>
+            <circle r="150" cx="400" cy="400" fill="url(#sssurface-grad-light)"></circle>
+          </g>
+        </svg>
+      </form>
     </div>
 
     <div class="sidebar">

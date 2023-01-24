@@ -51,11 +51,41 @@ a:visited {
   left: 0px;
   right: 0px;
   width: 100%;
-  background-image: linear-gradient(
+  /* background-image: linear-gradient(
     to bottom right,
     var(--color-dark--1),
     var(--color-dark--2)
-  );
+  ); */
+
+  background-image: url(./bbblurry.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: var(--color-dark--1);
+}
+
+.signup__form {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 600px;
+  width: 300px;
+  background-image: url(./wave-haikei.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  border-radius: 5px;
+  box-shadow: -30px 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.signup__form__svg {
+  position: absolute;
+  top: -30%;
+  left: -60%;
+  height: 70%;
+  width: auto;
 }
 
 .login__page.hidden {
@@ -72,6 +102,15 @@ a:visited {
   height: 15rem;
   padding: 2rem 5rem 2rem 5rem;
   border-bottom: solid 1px var(--color-light--2);
+
+  background: rgba(0, 0, 0, 0.2);
+}
+
+@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+  .login__header {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
 }
 
 .login__button {

@@ -39,20 +39,56 @@ a:link, a:visited {
 .login__page {
   z-index: 10;
   width: 100%;
-  background-image: linear-gradient(to bottom right, var(--color-dark--1), var(--color-dark--2));
+  background-image: url("bbblurry.4c6f4af6.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: var(--color-dark--1);
   display: flex;
   position: absolute;
   inset: 0;
+}
+
+.signup__form {
+  height: 600px;
+  width: 300px;
+  background-image: url("wave-haikei.d9279a68.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 5px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: -30px 10px 40px #0003;
+}
+
+.signup__form__svg {
+  height: 70%;
+  width: auto;
+  position: absolute;
+  top: -30%;
+  left: -60%;
 }
 
 .login__header {
   width: 100%;
   height: 15rem;
   border-bottom: solid 1px var(--color-light--2);
+  background: #0003;
   justify-content: space-between;
   align-items: center;
   padding: 2rem 5rem;
   display: flex;
+}
+
+@supports ((-webkit-backdrop-filter: none)) or ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+  .login__header {
+    -webkit-backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
 }
 
 .login__button {
