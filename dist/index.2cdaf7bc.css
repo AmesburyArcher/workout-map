@@ -190,6 +190,17 @@ a:link, a:visited {
   padding: 1.5rem 2.75rem;
   transition: all .5s, transform 1ms;
   display: grid;
+  position: relative;
+}
+
+.form__error {
+  color: red;
+  width: 220px;
+  opacity: 0;
+  font-weight: bold;
+  position: absolute;
+  bottom: 0;
+  left: 25%;
 }
 
 .form.hidden {
@@ -224,14 +235,6 @@ a:link, a:visited {
   font-family: inherit;
   font-size: 1.4rem;
   transition: all .2s;
-}
-
-.form__input.form__invalid {
-  border: 1px solid red;
-}
-
-.form__input.form__valid {
-  border: 1px solid green;
 }
 
 .form__input:focus {

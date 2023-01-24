@@ -3,6 +3,7 @@ import { Cycling, Running } from './workouts';
 
 const mapDOM = document.querySelector('#map');
 const form = document.querySelector('.form');
+const errorMSG = document.querySelector('.form__error');
 const sidebar = document.querySelector('.sidebar');
 const containerWorkouts = document.querySelector('.workouts');
 const inputType = document.querySelector('.form__input--type');
@@ -202,6 +203,9 @@ class App {
       // add class to form to disable submit listener
       form.classList.add('ignore');
 
+      //focus on input
+      inputDistance.focus();
+
       //selectors
       const buttonHTML = e.target.closest('.workout__edit');
       const formDOM = e.target.closest('.workout');
@@ -261,6 +265,36 @@ class App {
       const newDistance = inputDistance.value;
       const newDuration = inputDuration.value;
 
+      //Validate values provided
+      //Remove error styling at start to account for previous attempts
+      this._resetErrorForm();
+      const validDistance = this._validateNumericInput(0, Number(newDistance));
+      const validDuration = this._validateNumericInput(0, Number(newDuration));
+      if (!validDuration) this._provideErrorForm(inputDuration);
+      if (!validDistance) this._provideErrorForm(inputDistance);
+      if (newWorkoutType === 'running') {
+        const validCadence = this._validateNumericInput(
+          0,
+          Number(inputCadence.value)
+        );
+        if (!validCadence) this._provideErrorForm(inputCadence);
+        if (!validDuration || !validDistance || !validCadence) {
+          errorMSG.style.opacity = '1';
+          return;
+        }
+      }
+      if (newWorkoutType === 'cycling') {
+        const validElevation = this._validateNumericInput(
+          0,
+          Number(inputElevation.value)
+        );
+        if (!validElevation) this._provideErrorForm(inputElevation);
+        if (!validDuration || !validDistance || !validElevation) {
+          errorMSG.style.opacity = '1';
+          return;
+        }
+      }
+
       workout.type = newWorkoutType;
       workout.distance = newDistance;
       workout.duration = newDuration;
@@ -276,6 +310,9 @@ class App {
         workout.elevationGain = newElevation;
         workout.calcSpeed();
       }
+
+      //Remove form error styling
+      this._resetErrorForm();
 
       // show updated list
       this._renderEditForm(workout, formDOM);
@@ -318,13 +355,26 @@ class App {
     inputCadence.closest('.form__row').classList.toggle('form__row--hidden');
   }
 
+  _validateNumericInput(constraint, input) {
+    if (!Number.isFinite(input) || input < constraint) return false;
+    return true;
+  }
+
+  _provideErrorForm(DOM) {
+    DOM.style.border = '1px solid red';
+  }
+
+  _resetErrorForm() {
+    errorMSG.style.opacity = '0';
+    inputDistance.style.border = 'none';
+    inputDuration.style.border = 'none';
+    inputCadence.style.border = 'none';
+    inputElevation.style.border = 'none';
+  }
+
   _newWorkout(e) {
     e.preventDefault();
     if (form.classList.contains('ignore')) return;
-    const validInputs = (...inputs) =>
-      inputs.every(input => Number.isFinite(input));
-
-    const allPositive = (...inputs) => inputs.every(input => input > 0);
 
     //Get data from form
     const type = inputType.value;
@@ -332,16 +382,22 @@ class App {
     const duration = +inputDuration.value;
     const { lat, lng } = this.#mapEvent.latlng;
     let workout;
+    //Validation
+    //Remove error styling at start to account for previous attempts
+    this._resetErrorForm();
+    const validDistance = this._validateNumericInput(0, distance);
+    const validDuration = this._validateNumericInput(0, duration);
+    if (!validDuration) this._provideErrorForm(inputDuration);
+    if (!validDistance) this._provideErrorForm(inputDistance);
     //if running, create running object
     if (type === 'running') {
       const cadence = +inputCadence.value;
       // check if data is valid
-      if (
-        !validInputs(distance, duration, cadence) ||
-        !allPositive(distance, duration, cadence)
-      ) {
-        //TODO: ADD FORM VALIDTION HERE
-        return alert('Inputs have to be positive numbers!');
+      const validCadence = this._validateNumericInput(0, cadence);
+      if (!validDistance || !validDuration || !validCadence) {
+        errorMSG.style.opacity = 1;
+        if (!validCadence) this._provideErrorForm(inputCadence);
+        return;
       }
 
       workout = new Running([lat, lng], distance, duration, cadence);
@@ -350,13 +406,18 @@ class App {
     //if cycling, create cycling object
     if (type === 'cycling') {
       const elevation = +inputElevation.value;
-      if (
-        !validInputs(distance, duration, elevation) ||
-        !allPositive(distance, duration)
-      )
-        return alert('Inputs have to be positive numbers!');
+      const validElevation = this._validateNumericInput(0, elevation);
+      if (!validDistance || !validDuration || !validElevation) {
+        errorMSG.style.opacity = 1;
+        if (!validElevation) this._provideErrorForm(inputElevation);
+        return;
+      }
+
       workout = new Cycling([lat, lng], distance, duration, elevation);
     }
+
+    //Remove invalid form styling
+    this._resetErrorForm;
 
     //add new object to workout array
     this.#workouts.push(workout);

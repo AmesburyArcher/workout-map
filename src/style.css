@@ -213,10 +213,21 @@ a:visited {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0.5rem 2.5rem;
+  position: relative;
 
   /* Match height and activity boxes */
   height: 9.25rem;
   transition: all 0.5s, transform 1ms;
+}
+
+.form__error {
+  position: absolute;
+  color: red;
+  width: 220px;
+  bottom: 0px;
+  left: 25%;
+  opacity: 0;
+  font-weight: bold;
 }
 
 .form.hidden {
@@ -251,14 +262,6 @@ a:visited {
   border-radius: 3px;
   background-color: var(--color-light--3);
   transition: all 0.2s;
-}
-
-.form__input.form__invalid {
-  border: 1px red solid;
-}
-
-.form__input.form__valid {
-  border: 1px solid green;
 }
 
 .form__input:focus {
