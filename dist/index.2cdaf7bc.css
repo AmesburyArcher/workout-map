@@ -50,6 +50,7 @@ a:link, a:visited {
 }
 
 .signup__form {
+  opacity: 0;
   height: 600px;
   width: 300px;
   background-image: url("wave-haikei.d9279a68.png");
@@ -57,11 +58,23 @@ a:link, a:visited {
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 5px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   box-shadow: -30px 10px 40px #0003;
+}
+
+.signup__form__close__button {
+  background-color: #0000;
+  border: none;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
 }
 
 .signup__form__svg {
@@ -70,6 +83,27 @@ a:link, a:visited {
   position: absolute;
   top: -30%;
   left: -60%;
+}
+
+.signup__form__smiley__svg__top {
+  position: absolute;
+  top: 10%;
+  right: 15%;
+}
+
+.signup__form__smiley__svg__bottom {
+  position: absolute;
+  bottom: 10%;
+  left: 10%;
+}
+
+.form__signup__container {
+  width: 250px;
+  flex-direction: column;
+  gap: .5rem;
+  margin-bottom: 4rem;
+  padding: 1rem;
+  display: flex;
 }
 
 .login__header {
@@ -133,6 +167,25 @@ a:link, a:visited {
 
 .login__logo__name {
   font-size: 64px;
+  position: relative;
+}
+
+.login__logo__name:before {
+  content: "";
+  width: 55%;
+  border-bottom: 3px solid var(--color-brand--2);
+  position: absolute;
+  bottom: 15%;
+  right: 0;
+}
+
+.login__logo__name:after {
+  content: "";
+  width: 45%;
+  border-bottom: 3px solid var(--color-brand--2);
+  position: absolute;
+  top: 18%;
+  left: 0;
 }
 
 .login__logo {

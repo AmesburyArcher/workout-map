@@ -65,6 +65,8 @@ a:visited {
 }
 
 .signup__form {
+  opacity: 0; /* toggle with signup button */
+
   position: absolute;
   left: 50%;
   top: 50%;
@@ -78,6 +80,19 @@ a:visited {
 
   border-radius: 5px;
   box-shadow: -30px 10px 40px rgba(0, 0, 0, 0.2);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.signup__form__close__button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  border: none;
+  background-color: transparent;
 }
 
 .signup__form__svg {
@@ -86,6 +101,26 @@ a:visited {
   left: -60%;
   height: 70%;
   width: auto;
+}
+
+.signup__form__smiley__svg__top {
+  position: absolute;
+  top: 10%;
+  right: 15%;
+}
+
+.signup__form__smiley__svg__bottom {
+  position: absolute;
+  bottom: 10%;
+  left: 10%;
+}
+.form__signup__container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  width: 250px;
+  margin-bottom: 4rem;
 }
 
 .login__page.hidden {
@@ -152,7 +187,25 @@ a:visited {
 }
 
 .login__logo__name {
+  position: relative;
   font-size: 64px;
+}
+
+.login__logo__name::before {
+  content: '';
+  position: absolute;
+  width: 55%;
+  border-bottom: 3px solid var(--color-brand--2);
+  bottom: 15%;
+  right: 0;
+}
+.login__logo__name::after {
+  content: '';
+  position: absolute;
+  width: 45%;
+  border-bottom: 3px solid var(--color-brand--2);
+  top: 18%;
+  left: 0;
 }
 
 .login__logo {

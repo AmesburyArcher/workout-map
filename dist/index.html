@@ -45,6 +45,43 @@
         </form>
       </div>
       <form class="signup__form">
+        <button type="button" class="signup__form__close__button">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-circle-x" width="24" height="24" viewbox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <circle cx="12" cy="12" r="9"></circle>
+            <path d="M10 10l4 4m0 -4l-4 4"></path>
+          </svg>
+        </button>
+        <svg viewbox="0 0 36 36" fill="none" role="img" xmlns="http://www.w3.org/2000/svg" width="80" height="80" class="signup__form__smiley__svg__bottom">
+          <title>Chien-Shiung</title>
+          <mask id="mask__beam" maskunits="userSpaceOnUse" x="0" y="0" width="36" height="36">
+            <rect width="36" height="36" rx="72" fill="#FFFFFF"></rect>
+          </mask>
+          <g mask="url(#mask__beam)">
+            <rect width="36" height="36" fill="#747474"></rect>
+            <rect x="0" y="0" width="36" height="36" transform="translate(4 4) rotate(310 18 18) scale(1.1)" fill="#272727" rx="6"></rect>
+            <g transform="translate(6 -5) rotate(0 18 18)">
+              <path d="M15 20c2 1 4 1 6 0" stroke="#FFFFFF" fill="none" stroke-linecap="round"></path>
+              <rect x="14" y="14" width="1.5" height="2" rx="1" stroke="none" fill="#FFFFFF"></rect>
+              <rect x="20" y="14" width="1.5" height="2" rx="1" stroke="none" fill="#FFFFFF"></rect>
+            </g>
+          </g>
+        </svg>
+        <svg viewbox="0 0 36 36" fill="none" role="img" xmlns="http://www.w3.org/2000/svg" width="80" height="80" class="signup__form__smiley__svg__top">
+          <title>Virginia Apgar</title>
+          <mask id="mask__beam" maskunits="userSpaceOnUse" x="0" y="0" width="36" height="36">
+            <rect width="36" height="36" rx="72" fill="#FFFFFF"></rect>
+          </mask>
+          <g mask="url(#mask__beam)">
+            <rect width="36" height="36" fill="#ececec"></rect>
+            <rect x="0" y="0" width="36" height="36" transform="translate(-2 6) rotate(306 18 18) scale(1)" fill="#ffe400" rx="36"></rect>
+            <g transform="translate(-2 6) rotate(6 18 18)">
+              <path d="M13,19 a1,0.75 0 0,0 10,0" fill="#000000"></path>
+              <rect x="13" y="14" width="1.5" height="2" rx="1" stroke="none" fill="#000000"></rect>
+              <rect x="21" y="14" width="1.5" height="2" rx="1" stroke="none" fill="#000000"></rect>
+            </g>
+          </g>
+        </svg>
         <svg class="signup__form__svg" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev/svgjs" viewbox="0 0 800 800">
           <defs>
             <radialgradient id="sssurface-grad-dark" r="75%" cx="20%" cy="20%">
@@ -66,6 +103,24 @@
             <circle r="150" cx="400" cy="400" fill="url(#sssurface-grad-light)"></circle>
           </g>
         </svg>
+        <div class="form__signup__container">
+          <div class="form__signup__holder">
+            <label class="form__label">First Name</label>
+            <input type="text" class="form__input form__input--name" placeholder="Max">
+          </div>
+          <div class="form__signup__holder">
+            <label class="form__label">Username</label>
+            <input type="text" class="form__input form__input__signup__username" placeholder="user81">
+          </div>
+          <div class="form__signup__holder">
+            <label class="form__label">Password</label>
+            <input type="text" class="form__input form__input__signup--password" placeholder="****">
+          </div>
+          <div class="form__signup__holder">
+            <label class="form__label">Birthday</label>
+            <input type="date" class="form__input form__input--birthday">
+          </div>
+        </div>
       </form>
     </div>
 

@@ -13,6 +13,8 @@ const inputCadence = document.querySelector('.form__input--cadence');
 const inputElevation = document.querySelector('.form__input--elevation');
 const loginButton = document.querySelector('.login__button');
 const loginScreen = document.querySelector('.login__page');
+const signupLink = document.querySelector('.login__signup__link');
+const signupForm = document.querySelector('.signup__form');
 
 class App {
   #map;
@@ -51,6 +53,9 @@ class App {
     loginButton.addEventListener('click', function () {
       console.log('click');
       loginScreen.classList.add('fade-out');
+    });
+    signupLink.addEventListener('click', function () {
+      signupForm.style.opacity = '1';
     });
   }
 
