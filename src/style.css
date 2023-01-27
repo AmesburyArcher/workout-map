@@ -95,6 +95,10 @@ a:visited {
   background-color: transparent;
 }
 
+.signup__form__close__button:hover {
+  cursor: pointer;
+}
+
 .signup__form__svg {
   position: absolute;
   top: -30%;

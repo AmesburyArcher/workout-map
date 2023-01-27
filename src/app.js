@@ -23,6 +23,7 @@ class App {
   #workouts = [];
   #mapMarkers = [];
   #sorted = false;
+
   constructor() {
     // get user pos
     this._getPosition();
@@ -56,6 +57,10 @@ class App {
     });
     signupLink.addEventListener('click', function () {
       signupForm.style.opacity = '1';
+    });
+    signupForm.addEventListener('click', function (e) {
+      if (!e.target.closest('.signup__form__close__button')) return;
+      signupForm.style.opacity = '0';
     });
   }
 
